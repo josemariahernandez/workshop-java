@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: workshop.RunTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 65.774 sec <<< FAILURE!
+Then I can see posts for the sites(Scenario: Correct login)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.AssertionError: Expected "Posts" but saw "Psts" instead
+	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:393)
+	at com.thoughtworks.selenium.SeleneseTestBase.assertTrue(SeleneseTestBase.java:397)
+	at com.thoughtworks.selenium.SeleneseTestBase.assertEquals(SeleneseTestBase.java:202)
+	at com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals(SeleneseTestNgHelper.java:109)
+	at workshop.PostPage.exists(PostPage.java:31)
+	at workshop.LoginPage.correct_login(LoginPage.java:42)
+	at workshop.Steps.i_can_see_posts_for_the_site(Steps.java:54)
+	at ?.Then I can see posts for the sites(workshop/login_page.feature:10)
+
+Scenario: Correct login  Time elapsed: 0.002 sec  <<< FAILURE!
+java.lang.AssertionError: Expected "Posts" but saw "Psts" instead
+	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:393)
+	at com.thoughtworks.selenium.SeleneseTestBase.assertTrue(SeleneseTestBase.java:397)
+	at com.thoughtworks.selenium.SeleneseTestBase.assertEquals(SeleneseTestBase.java:202)
+	at com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals(SeleneseTestNgHelper.java:109)
+	at workshop.PostPage.exists(PostPage.java:31)
+	at workshop.LoginPage.correct_login(LoginPage.java:42)
+	at workshop.Steps.i_can_see_posts_for_the_site(Steps.java:54)
+	at ?.Then I can see posts for the sites(workshop/login_page.feature:10)
+
