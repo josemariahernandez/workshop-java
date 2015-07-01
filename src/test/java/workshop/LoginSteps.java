@@ -1,24 +1,21 @@
 package workshop;
 
-import java.io.File;
-import java.net.URL;
-
-import io.appium.java_client.AppiumDriver;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import cucumber.api.java.*;
-import cucumber.api.java.en.*;
-
+import java.io.File;
+import java.net.URL;
 
 
 public class LoginSteps{
   private AndroidDriver driver;
   private LoginPage login_page;
-
+/*
   @Before
   public void setUp() throws Exception {
     File classpathRoot = new File(System.getProperty("user.dir"));
@@ -37,10 +34,14 @@ public class LoginSteps{
   @After
   public void tearDown() throws Exception {
     driver.quit();
+  }*/
+  public LoginSteps(SharedDriver driver){
+    this.driver = driver;
   }
 
+
   @Given("^I am about to login$")
-  public void i_am_about_to_login(){
+  public void i_am_about_to_login() throws Exception{
     login_page = new LoginPage(driver);
   }
 
@@ -50,17 +51,7 @@ public class LoginSteps{
   }
 
   @Then("^I can see posts for the site")
-  public void i_can_see_posts_for_the_site(){
+  public void i_can_see_posts_for_the_site() {
     login_page.correct_login();
-  }
-
-  @When("^I enter invalid url$")
-  public void i_enter_invalid_url(){
-    login_page.invalid_url();
-  }
-
-  @Then("^I can see error message$")
-  public void i_can_see_error_message(){
-    login_page.error_message();
   }
 }
