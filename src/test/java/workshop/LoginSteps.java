@@ -15,26 +15,7 @@ import java.net.URL;
 public class LoginSteps{
   private AndroidDriver driver;
   private LoginPage login_page;
-/*
-  @Before
-  public void setUp() throws Exception {
-    File classpathRoot = new File(System.getProperty("user.dir"));
-    File appDir = new File(classpathRoot, "apps");
-    File app = new File(appDir, "Workshop.apk");
 
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability("deviceName","Genymotion");
-    capabilities.setCapability("platformVersion", "4.4");
-    capabilities.setCapability("app", app.getAbsolutePath());
-
-    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-
-  }
-
-  @After
-  public void tearDown() throws Exception {
-    driver.quit();
-  }*/
   public LoginSteps(SharedDriver driver){
     this.driver = driver;
   }

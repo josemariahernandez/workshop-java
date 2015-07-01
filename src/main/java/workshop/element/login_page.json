@@ -1,0 +1,8 @@
+{
+  "user":"org.wordpress.android:id/nux_username",
+  "password":"org.wordpress.android:id/nux_password",
+  "add_url":"org.wordpress.android:id/nux_add_selfhosted_button",
+  "url":"org.wordpress.android:id/nux_url",
+  "sign_in":"org.wordpress.android:id/nux_sign_in_button",
+  "error":"org.wordpress.android:id/nux_dialog_title"
+}

@@ -10,20 +10,17 @@ import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
 
 public class LoginPage extends BasePage {
 
-    private WebDriverWait driver_wait;
-
     public LoginPage(AndroidDriver driver){
-        this.driver = driver;
-        driver_wait = new WebDriverWait(driver, 10);
+        super(driver, "login_page");
     }
 
     public void fill_credentials(){
 
-        fill_field("org.wordpress.android:id/nux_username", "calabash");
-        fill_field("org.wordpress.android:id/nux_password", "password");
-        press_button("org.wordpress.android:id/nux_add_selfhosted_button");
-        fill_field("org.wordpress.android:id/nux_url", "ec2-54-82-18-238.compute-1.amazonaws.com/wordpress");
-        press_button("org.wordpress.android:id/nux_sign_in_button");
+        fill_field(id("user"), "calabash");
+        fill_field(id("password"), "password");
+        press_button(id("add_url"));
+        fill_field(id("url"), "ec2-54-82-18-238.compute-1.amazonaws.com/wordpress");
+        press_button(id("sign_in"));
     }
 
     public void correct_login(){
@@ -33,15 +30,15 @@ public class LoginPage extends BasePage {
     }
 
     public void invalid_url() {
-        fill_field("org.wordpress.android:id/nux_username", "calabash");
-        fill_field("org.wordpress.android:id/nux_password", "password");
-        press_button("org.wordpress.android:id/nux_add_selfhosted_button");
-        fill_field("org.wordpress.android:id/nux_url", "qqqqqqqqq");
-        press_button("org.wordpress.android:id/nux_sign_in_button");
+        fill_field(id("user"), "calabash");
+        fill_field(id("password"), "password");
+        press_button(id("add_url"));
+        fill_field(id("url"), "qqqqqqqqq");
+        press_button(id("sign_in"));
     }
 
     public void error_message() {
-        driver_wait.until(ExpectedConditions.presenceOfElementLocated(By.id("org.wordpress.android:id/nux_dialog_title")));
-        assertEquals(driver.findElement(By.id("org.wordpress.android:id/nux_dialog_title")).getText(), "We can't log you in");
+        wait_until(id("error"));
+        assertEquals(element_text(id("error")), "We can't log you in");
     }
 }

@@ -18,16 +18,12 @@ import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
 
 public class PostPage extends BasePage{
 
-    //private AndroidDriver driver;
-    private WebDriverWait driver_wait;
-
     public PostPage(AndroidDriver driver){
-        this.driver = driver;
-        driver_wait = new WebDriverWait(driver, 20);
+        super(driver, "post_page");
     }
 
     public void exists(){
-        driver_wait.until(ExpectedConditions.presenceOfElementLocated(By.id("android:id/action_bar_title")));
-        assertEquals(driver.findElement(By.id("android:id/action_bar_title")).getText(), "Posts");
+        wait_until(id("title"));
+        assertEquals(element_text(id("title")), "Posts");
     }
 }
