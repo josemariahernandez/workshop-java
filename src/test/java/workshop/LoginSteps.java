@@ -8,9 +8,6 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
-import java.net.URL;
-
 
 public class LoginSteps{
   private AndroidDriver driver;
@@ -28,17 +25,17 @@ public class LoginSteps{
 
   @When("^I enter valid credentials$")
   public void i_enter_valid_credentials(){
-    login_page.fill_credentials();
+    login_page.fill_credentials("login_valid");
   }
 
   @Then("^I can see posts for the site")
   public void i_can_see_posts_for_the_site() {
-    login_page.correct_login();
+    login_page.is_correct_login();
   }
 
   @When("^I enter invalid credentials$")
   public void i_enter_invalid_credentials(){
-    login_page.fill_incorrect_credentials();
+    login_page.fill_credentials("login_invalid");
   }
 
   @Then("^I can see login page again$")

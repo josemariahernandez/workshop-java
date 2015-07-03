@@ -12,10 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Properties;
 
 
@@ -30,10 +27,9 @@ public class BasePage {
     public BasePage(AndroidDriver driver, String file){
         this.driver = driver;
         driver_wait = new WebDriverWait(driver, 10);
-        File archive;
-        archive = new File("src\\main\\java\\workshop\\element\\" + file + ".json");
 
-        properties = getJson(archive);
+        properties = get_data("src\\main\\java\\workshop\\element\\" + file + ".properties");
+
     }
 
     public void press_button(String element){
@@ -56,35 +52,25 @@ public class BasePage {
         return properties.getProperty(element);
     }
 
-    public Properties getJson(File archive){
-
-        String json = "";
-        Gson gson = new Gson();
-
-        FileReader fr = null;
-        BufferedReader br;
-
+    public Properties get_data(String file){
+        Properties temp = new Properties();
+        InputStream input = null;
         try {
-
-            fr = new FileReader(archive);
-            br = new BufferedReader(fr);
-
-            String linea;
-
-            while((linea=br.readLine())!=null) {
-                json = json + linea;
-            }
-        } catch (Exception e) {
+            input = new FileInputStream(file);
+            temp.load(input);
+        } catch (FileNotFoundException e){
             e.printStackTrace();
-        }finally {
-            try{
-                if( null != fr ){
-                    fr.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            if(input != null){
+                try {
+                    input.close();
+                } catch(IOException e){
+                    e.printStackTrace();
                 }
-            }catch (Exception e2){
-                e2.printStackTrace();
             }
         }
-        return gson.fromJson(json, (Properties.class));
+        return temp;
     }
 }

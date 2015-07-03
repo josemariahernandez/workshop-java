@@ -17,7 +17,7 @@ public class InvalidLoginSteps {
 
     @When("^I enter invalid url$")
     public void i_enter_invalid_url(){
-        login_page.invalid_url();
+        login_page.fill_credentials("url_invalid");
     }
 
     @Then("^I can see error message$")
