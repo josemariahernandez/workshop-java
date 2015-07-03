@@ -23,7 +23,7 @@ public class PostPage extends BasePage{
     }
 
     public void exists(){
-        wait_until(id("title"));
-        assertEquals(element_text(id("title")), "Posts");
+        wait_until(element("title"));
+        assertEquals(element_text(element("title")), "Posts");
     }
 }

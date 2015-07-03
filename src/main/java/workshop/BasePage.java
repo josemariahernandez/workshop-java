@@ -24,32 +24,56 @@ public class BasePage {
     protected AndroidDriver driver;
     private WebDriverWait driver_wait;
 
-    private File archive;
-    private FileReader fr;
-    private BufferedReader br;
     private Properties properties;
-
 
 
     public BasePage(AndroidDriver driver, String file){
         this.driver = driver;
         driver_wait = new WebDriverWait(driver, 10);
-        String json;
+        File archive;
+        archive = new File("src\\main\\java\\workshop\\element\\" + file + ".json");
+
+        properties = getJson(archive);
+    }
+
+    public void press_button(String element){
+        By.id(element).findElement(driver).click();
+    }
+
+    public void fill_field(String element, String content){
+        By.id(element).findElement(driver).sendKeys(content);
+    }
+
+    public void wait_until(String element) {
+        driver_wait.until(ExpectedConditions.presenceOfElementLocated(By.id(element)));
+    }
+
+    public String element_text(String string){
+        return driver.findElement(By.id(string)).getText();
+    }
+
+    public String element(String element){
+        return properties.getProperty(element);
+    }
+
+    public Properties getJson(File archive){
+
+        String json = "";
         Gson gson = new Gson();
 
+        FileReader fr = null;
+        BufferedReader br;
+
         try {
-            archive = new File("src\\main\\java\\workshop\\element\\" + file + ".json");
+
             fr = new FileReader(archive);
             br = new BufferedReader(fr);
-            json = "";
 
             String linea;
 
             while((linea=br.readLine())!=null) {
                 json = json + linea;
             }
-
-            properties = gson.fromJson(json, Properties.class);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -61,25 +85,6 @@ public class BasePage {
                 e2.printStackTrace();
             }
         }
-    }
-
-    public void press_button(String id){
-        By.id(id).findElement(driver).click();
-    }
-
-    public void fill_field(String id, String content){
-        By.id(id).findElement(driver).sendKeys(content);
-    }
-
-    public void wait_until(String string) {
-        driver_wait.until(ExpectedConditions.presenceOfElementLocated(By.id(string)));
-    }
-
-    public String element_text(String string){
-        return driver.findElement(By.id(string)).getText();
-    }
-
-    public String id(String id){
-        return properties.getProperty(id);
+        return gson.fromJson(json, (Properties.class));
     }
 }

@@ -35,4 +35,14 @@ public class LoginSteps{
   public void i_can_see_posts_for_the_site() {
     login_page.correct_login();
   }
+
+  @When("^I enter invalid credentials$")
+  public void i_enter_invalid_credentials(){
+    login_page.fill_incorrect_credentials();
+  }
+
+  @Then("^I can see login page again$")
+  public void i_can_see_login_page_again(){
+    login_page.exists();
+  }
 }
